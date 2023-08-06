@@ -104,11 +104,13 @@
     bottom: calc(50vh - 20px);
     right: 10px;
 }
+
 .red-item-2 {
     position: fixed;
     bottom: calc(50vh - 60px);
     right: 10px;
 }
+
 .red-item-3 {
     position: fixed;
     bottom: calc(50vh - 100px);
