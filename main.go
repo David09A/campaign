@@ -45,6 +45,24 @@ func handleBiografia(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write(content)
 }
 
+func handlePrincipalesLogros(w http.ResponseWriter, r *http.Request) {
+	// Obtener la ruta completa de principales_logros.html
+	cwd, _ := os.Getwd()
+	filePath := filepath.Join(cwd, "public", "principales_logros.html")
+
+	// Leer el contenido del archivo principales_logros.html
+	content, err := os.ReadFile(filePath)
+	if err != nil {
+		http.Error(w, "Error al leer el archivo principales_logros.html", http.StatusInternalServerError)
+		return
+	}
+
+	// Establecer el tipo de contenido como "text/html"
+	w.Header().Set("Content-Type", "text/html")
+	// Escribir el contenido en la respuesta
+	_, _ = w.Write(content)
+}
+
 func handlePlanDeGobierno(w http.ResponseWriter, r *http.Request) {
 	// Obtener la ruta completa de plan_de_gobierno.html
 	cwd, _ := os.Getwd()
@@ -93,6 +111,9 @@ func main() {
 
 	// Manejador para la página de biografía ("/biography")
 	http.HandleFunc("/biografia", handleBiografia)
+
+	// Manejador para la página de biografía ("/principales_logros")
+	http.HandleFunc("/principales_logros", handlePrincipalesLogros)
 
 	// Manejador para la página de plan_gobierno ("/biography")
 	http.HandleFunc("/plan_de_gobierno", handlePlanDeGobierno)
